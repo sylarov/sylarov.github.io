@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -160,12 +160,12 @@
   <script>
     function updateTime() {
       const options = { timeZone: 'Europe/Moscow', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-      document.getElementById('time').textContent = new Date().toLocaleTimeString('en-GB', options);
+      document.getElementById('time').textContent = new Date().toLocaleTimeString('ru-ru', options);
     }
 
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
-        alert("Discord username copied to clipboard!");
+        alert("Имя пользователя Discord скопировано в буфер обмена!");
       });
     }
 
