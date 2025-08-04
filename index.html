@@ -1,245 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:locale" content="en"/>
-    <meta property="og:title" content="sylarov"/>
-    <meta property="og:description" content=";)"/>
-    <meta property="og:image" content="https://sylarov.github.io/materials/avatar.png"/>
-    <title>sylarov</title>
-    <link rel="icon" href="materials/website.ico" type="image/x-icon"/>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            position: relative;
-            background-image: url(materials/background.gif);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            text-align: center;
-        }
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5); 
-            z-index: 1;
-        }
-        .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-            background-color: #ddd;
-            z-index: 2;
-        }
-        .name {
-            font-size: 24px;
-            color: #fff;
-            margin: 10px 0;
-            z-index: 2;
-        }
-        .bio {
-            font-size: 16px;
-            color: #fff;
-            margin-bottom: 20px;
-            z-index: 2;
-            position: relative;
-        }
-        .button-container {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 7px;
-            z-index: 2;
-	    position: relative;
-        }
-        .button, .button2, .copy-button {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            z-index: 2;
-            transition: background-color 0.3s, border 0.3s;
-        }
-        .button img, .copy-button img {
-            width: 20px;
-            height: 20px;
-            margin-right: 8px;
-        }
-        .button2 img {
-            width: 20px;
-            height: 20px;
-            margin-right: 8px;
-        }
-        .button:hover, .button2:hover, .copy-button:hover {
-            background-color: rgba(255, 255, 255, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.7);
-        }
-        .button:focus, .button2:hover, .copy-button:focus {
-            outline: none;
-        }
-        .bio-expanded {
-	    display: none;
-            z-index: 2;
-	}
-	.bio-expanded.show {
-	    display: block;
-            z-index: 2;
-	}
-	.expand-bio {
-	    text-decoration: none;
-	    color: #fff;
-	    cursor: pointer;
-	    z-index: 2;
-	}
-	.expand-bio:hover {
-	    text-decoration: underline;
-	    z-index: 2;
-	}
-	.bio-expanded {
-	    white-space: pre-wrap;
-            z-index: 2;
-	}
-        @media (max-width: 768px) {
-            .avatar {
-                width: 160px;
-                height: 160px;
-            }
-            .name {
-                font-size: 40px;
-            }
-            .bio {
-                font-size: 16px;
-            }
-            .button, .button2, .copy-button {
-                font-size: 28px;
-                padding: 5px 13px;
-            }
-            .button img, .copy-button img {
-                width: 20px;
-                height: 20px;
-            }
-            .button2 img {
-                width: 20px;
-                height: 20px;
-            }
-            .button-container {
-                flex-direction: column;
-                gap: 4px;
-            }
-        }
-        @media (max-width: 480px) {
-            .avatar {
-                width: 120px;
-                height: 120px;
-            }
-            .name {
-                font-size: 36px;
-            }
-            .bio {
-                font-size: 16px;
-            }
-            .button, .button2, .copy-button {
-                font-size: 24px;
-                padding: 5px 13px;
-            }
-            .button img, .copy-button img {
-                width: 20px;
-                height: 20px;
-            }
-            .button2 img {
-                width: 20px;
-                height: 20px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:title" content="sylarov" />
+  <meta property="og:description" content=";)" />
+  <meta property="og:image" content="https://sylarov.github.io/materials/avatar.png" />
+  <title>sylarov</title>
+  <link rel="icon" href="materials/website.ico" type="image/x-icon" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('materials/background.gif') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      text-align: center;
+      color: #222;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      max-width: 90%;
+      width: 400px;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+
+    .name {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .bio {
+      font-size: 16px;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: typing 2s steps(20, end) forwards;
+    }
+
+    @keyframes typing {
+      0% { width: 0; opacity: 1; }
+      100% { width: 100%; opacity: 1; }
+    }
+
+    .time {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .button {
+      background-color: rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 10px 15px;
+      color: #222;
+      text-decoration: none;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .button img {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.4s ease;
+    }
+
+    .button:hover {
+      background-color: rgba(0, 0, 0, 0.08);
+      transform: scale(1.05);
+    }
+
+    .button:hover img {
+      animation: icon-bounce 0.6s ease forwards;
+    }
+
+    @keyframes icon-bounce {
+      0% { transform: scale(1); }
+      30% { transform: scale(1.25) rotate(10deg); }
+      60% { transform: scale(0.95) rotate(-10deg); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 500px) {
+      .glass-card {
+        padding: 25px;
+        width: 90%;
+      }
+
+      .button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
 <body>
-    <img src="materials\avatar.png" alt="Avatar" class="avatar">
+  <div class="glass-card">
+    <img src="materials/avatar.png" alt="Avatar" class="avatar" />
     <div class="name">sylarov</div>
-    <div class="bio-container">
-        <div class="bio">
-		 <span id="time"></span>
-            <br>
-            <br>
-	<a href="#" class="expand-bio"></a>
-	</div>
-    <div class="button-container">
-        <a href="https://t.me/sylarov" class="button2">
-            <img src="materials\telegram.png" alt="Telegram">Telegram
-        </a>
-        <a href="https://youtube.com/@sylarov" class="button">
-            <img src="materials\youtube.png" alt="YouTube">YouTube
-        </a>
-        <a class="copy-button" onclick="copyToClipboard('@sylarov')">
-            <img src="materials\discord.png" alt="Discord">Discord
-        </a>   
-        <a href="https://github.com/sylarov/" class="button2">
-            <img src="materials\github.png" alt="GitHub">GitHub
-        </a>
-        <a href="https://steamcommunity.com/id/sylarov300" class="button2">
-            <img src="materials\steam.png" alt="Steam">Steam
-        </a>
+    <div class="time" id="time"></div>
+    <div class="bio" id="greeting">Привет, рад тебя видеть!</div>
+    <div class="buttons">
+      <a href="https://t.me/sylarov" class="button"><img src="materials/telegram.png" alt="Telegram" /> Telegram</a>
+      <a href="https://youtube.com/@sylarov" class="button"><img src="materials/youtube.png" alt="YouTube" /> YouTube</a>
+      <a href="#" onclick="copyToClipboard('@sylarov')" class="button"><img src="materials/discord.png" alt="Discord" /> Discord</a>
+      <a href="https://github.com/sylarov/" class="button"><img src="materials/github.png" alt="GitHub" /> GitHub</a>
+      <a href="https://steamcommunity.com/id/sylarov300" class="button"><img src="materials/steam.png" alt="Steam" /> Steam</a>
     </div>
+  </div>
 
-    <script>
-        const expandBioButton = document.querySelector('.expand-bio');
-	const bioExpanded = document.querySelector('.bio-expanded');
+  <!-- Звук -->
+  <audio id="hover-sound" preload="auto">
+    <source src="data:audio/mp3;base64,//uQxA..." type="audio/mp3">
+    <!-- Укорочено. Подставлю реальный base64 при необходимости -->
+  </audio>
 
-	expandBioButton.addEventListener('click', (e) => {
-		e.preventDefault();
-		bioExpanded.classList.toggle('show');
-		expandBioButton.textContent = bioExpanded.classList.contains('show')? 'Minimize' : 'More...';
-	});
-        
-        function copyToClipboard(text) {
-            const tempInput = document.createElement('input');
-            tempInput.value = text;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-            alert('Discord username copied to clipboard!');
-        }
+  <script>
+    function updateTime() {
+      const options = { timeZone: 'Europe/Moscow', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      document.getElementById('time').textContent = new Date().toLocaleTimeString('en-GB', options);
+    }
 
-        function updateTime() {
-            const options = { timeZone: 'Europe/Moscow', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-            document.getElementById('time').textContent = new Date().toLocaleTimeString('en-GB', options);
-        }
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Discord username copied to clipboard!");
+      });
+    }
 
-        updateTime();
-        setInterval(updateTime, 1000);
-    </script>
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    // Звук при наведении
+    const hoverSound = document.getElementById('hover-sound');
+    document.querySelectorAll('.button').forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        hoverSound.currentTime = 0;
+        hoverSound.play();
+      });
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
